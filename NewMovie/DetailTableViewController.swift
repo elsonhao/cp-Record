@@ -13,7 +13,10 @@ class DetailTableViewController: UITableViewController {
     var movie:String!
     var Score:String!
     var Content:String!
+    var movieImageName:UIImage!
+    var DeatilNowIndex:Int!
     
+    @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieName: UITextField!
     @IBOutlet weak var movieScore: UITextField!
     @IBOutlet weak var movieContent: UITextView!
@@ -22,6 +25,7 @@ class DetailTableViewController: UITableViewController {
         movieName.text = movie
         movieScore.text = Score
         movieContent.text = Content
+        movieImage.image = movieImageName
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +43,15 @@ class DetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 3
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let Editcontroller = segue.destination as! EditTableViewController
+        Editcontroller.EditMovie = movie
+        Editcontroller.EditScore = Score
+        Editcontroller.EditContent = Content
+        Editcontroller.EditImageName = movieImageName
+        Editcontroller.nowIndexNumber = DeatilNowIndex
     }
 
     /*
